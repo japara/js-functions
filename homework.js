@@ -1,17 +1,41 @@
 function getStudentFromIds(studentId) {
-  // TODO
+  return studentId.map(function (id) {
+    return studentRecords.find(function (record) {
+      return record.id === id;
+    });
+  });
 }
 
 function printRecords(recordIds) {
-  // TODO
+  const recordsToPrint = getStudentFromIds(recordIds).sort(function sortByName(
+    a,
+    b
+  ) {
+    return a.name.localeCompare(b.name);
+  });
+  recordsToPrint.forEach(function (record) {
+    console.log(
+      `${record.name} (${record.id}): ${record.paid ? "Paid" : "Not Paid"}`
+    );
+  });
 }
 
 function paidStudentsToEnroll() {
-  // TODO
+  const toEnroll = studentRecords
+    .filter(function getToEnrollStudents(record) {
+      !record.paid && !currentEnrollment.includes(record.id);
+    })
+    .map(function getIds(record) {
+      record.id;
+    });
+  return [...currentEnrollment, ...toEnroll];
 }
 
 function remindUnpaid(recordIds) {
-  // TODO
+  const unpaid = getStudentFromIds(recordIds).filter(function (record) {
+    return !record.paid;
+  });
+  printRecords(unpaid);
 }
 
 // ********************************
