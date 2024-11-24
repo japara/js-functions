@@ -15,7 +15,7 @@ function printRecords(recordIds) {
   });
   recordsToPrint.forEach(function (record) {
     console.log(
-      `${record.name} (${record.id}): ${record.paid ? "Paid" : "Not Paid"}`
+      `${record.name} (${record.id}) ${record.paid ? "Paid" : "Not Paid"} `
     );
   });
 }
@@ -35,7 +35,8 @@ function remindUnpaid(recordIds) {
   const unpaid = getStudentFromIds(recordIds).filter(function (record) {
     return !record.paid;
   });
-  printRecords(unpaid);
+
+  return printRecords(unpaid.map((record) => record.id));
 }
 
 // ********************************
