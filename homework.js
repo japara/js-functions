@@ -1,6 +1,6 @@
 function getStudentFromIds(studentId) {
   return studentId.map(function (id) {
-    return studentRecords.find(function (record) {
+    return studentRecords.find(function findById(record) {
       return record.id === id;
     });
   });
@@ -13,7 +13,7 @@ function printRecords(recordIds) {
   ) {
     return a.name.localeCompare(b.name);
   });
-  recordsToPrint.forEach(function (record) {
+  recordsToPrint.forEach(function consoleStudents(record) {
     console.log(
       `${record.name} (${record.id}) ${record.paid ? "Paid" : "Not Paid"} `
     );
